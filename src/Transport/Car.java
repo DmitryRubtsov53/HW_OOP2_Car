@@ -85,11 +85,12 @@ public class Car {
         }
 
 // methods ***********************************************************
-    public void printCars() {
-            System.out.println(brand + " " + model + ", " + yearOfIssue + "-го года, сборка " +
+@Override
+public String toString() {
+    return brand + " " + model + ", " + yearOfIssue + "-го года, сборка " +
               assemblyCountry + ", " + "цвет " + bodyColor + ", V двигателя - " + engineVolume + " л., кузов - " +
               bodyType + ", количество мест " + places + ", Госномер " + regNumber + ", " + gearbox +
-              ", тип авторезины - " +  tiresType + ".");
+              ", тип авторезины - " +  tiresType + ".";
         }
 
 }
