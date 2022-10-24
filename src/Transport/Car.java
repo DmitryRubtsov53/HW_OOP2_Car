@@ -4,8 +4,8 @@ public class Car {
 
     public static class Key {  //**** Вложенный класс ***************************
 
-        private String remoteStart;
-        private String keylessEntry;
+        private String remoteStart;     // Дистанционный запуск
+        private String keylessEntry;    // Бесключевой доступ
 
         public Key(String remoteStart, String keylessEntry) {
             this.remoteStart = remoteStart;
@@ -30,7 +30,7 @@ public class Car {
     final String assemblyCountry;
     final String bodyType;   // тип кузова
     final int places;             // Количество мест
-    Key key;
+    public static Key key;
 
     public String getBrand() { return brand; }
     public String getModel() { return model; }
@@ -39,11 +39,11 @@ public class Car {
     public String getBodyType() { return bodyType; }
     public int getPlaces() { return places; }
     // ***************************************************************
-    double engineVolume;
-    String bodyColor;
-    String gearbox;         // коробка передач
-    String regNumber;          // Регистрационный номер
-    String tiresType;       // тип авторезины - летняя или зимняя
+    private double engineVolume;
+    private String bodyColor;
+    private String gearbox;         // коробка передач
+    private String regNumber;          // Регистрационный номер
+    private String tiresType;       // тип авторезины - летняя или зимняя
     //Car.new Key();
 
     public double getEngineVolume() { return engineVolume; }
@@ -68,7 +68,7 @@ public class Car {
     }
     public String getTiresType() { return tiresType; }
     public void setTiresType(String tiresType) {
-        if (tiresType == null || tiresType.isEmpty() || tiresType.isBlank()) { this.tiresType = "летняя";
+        if (tiresType == null || tiresType.isEmpty() || tiresType.isBlank()) { this.tiresType = "лето";
         } else this.tiresType = tiresType;
     }
     public Key getKey() { return key;
@@ -108,7 +108,7 @@ public class Car {
             this.gearbox = "МКПП";
             }  else this.gearbox = gearbox;
         if (tiresType == null || tiresType.isEmpty() || tiresType.isBlank()) {
-            this.tiresType = "летняя";
+            this.tiresType = "лето";
             } else this.tiresType = tiresType;
         }
 

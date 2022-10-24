@@ -49,71 +49,53 @@ public class Main {
         char[] chars = {'А', 'В', 'Е', 'К', 'М', 'Н', 'О', 'Р', 'С', 'Т', 'У', 'Х'};
 
         for (int i = 0; i < car.length; i++) {
-           String num = car[i].getRegNumber(); //System.out.println(s.equals("000"));
+           String num = car[i].getRegNumber();
 
            if ( num.equals("не выдан") ) continue;
 
            if ( num.length() != 9) {
-               System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не коректный!");
+               System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не корректный!");
                continue;
            }
            if (!num.endsWith("102") && !num.endsWith("702") && !num.endsWith("002")) {
-               System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не коректный!");
+               System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не корректный!");
                continue;
            }
            if (!Character.isDigit(num.charAt(1))
                    || !Character.isDigit(num.charAt(2))
                    || !Character.isDigit(num.charAt(3))) {
-               System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не коректный!");
+               System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не корректный!");
                continue;
            }
            if (num.substring(1,4).equals("000"))  {
-               System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не коректный!");
+               System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не корректный!");
                continue;
            }
-//Проверка на корректное исаользование букв, входящих в Госномер авто на заданных позициях:
+// Проверка на корректное исаользование букв, входящих в Госномер авто на заданных позициях:
                      for  (int j = 0; j < chars.length; j++) {
                          if (num.charAt(0) == chars[j]) break;
                          if (num.charAt(0) != chars[j] && j == chars.length - 1)
-                            System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не коректный!");
+                            System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() +
+                                                                                                     " не корректный!");
                      }
                      for  (int j = 0; j < chars.length; j++) {
                          if (num.charAt(4) == chars[j]) break;
                          if (num.charAt(4) != chars[j] && j == chars.length - 1)
-                            System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не коректный!");
+                            System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() +
+                                                                                                     " не корректный!");
                      }
                      for  (int j = 0; j < chars.length; j++) {
                          if (num.charAt(5) == chars[j]) break;
                          if (num.charAt(5) != chars[j] && j == chars.length - 1)
-                       System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() + " не коректный!");
+                       System.out.println("Госномер автомобиля " + car[i].getBrand() + " " + car[i].getModel() +
+                                                                                                     " не корректный!");
                      }
-
-
                 }
-
         }
-
-
     public static void printCars (Car[] car) {
         for (Car el : car) {
             System.out.println(el);
         }
     }
-    public static boolean checkChars(Car[] car) {
-
-        boolean checkChar = false;
-        for (Car el : car) {
-            char[] chars = {'А', 'В', 'Е', 'К', 'М', 'Н', 'О', 'Р', 'С', 'Т', 'У', 'Х'};
-            for  (char e : chars) {
-                if (el.getRegNumber().charAt(0) != e || el.getRegNumber().charAt(4) != e
-                        || el.getRegNumber().charAt(5) != e)
-                    break;
-            }
-            checkChar = true;
-        }
-        return true;
-    }
-
-
 
 } // class Main
