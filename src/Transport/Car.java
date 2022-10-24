@@ -2,12 +2,35 @@ package Transport;
 
 public class Car {
 
+    public static class Key {  //**** Вложенный класс ***************************
+
+        private String remoteStart;
+        private String keylessEntry;
+
+        public Key(String remoteStart, String keylessEntry) {
+            this.remoteStart = remoteStart;
+            this.keylessEntry = keylessEntry;
+        }
+
+        public String getRemoteStart() { return remoteStart;
+        }
+        public void setRemoteStart(String remoteStart) {
+            this.remoteStart = remoteStart;
+        }
+        public String getKeylessEntry() { return keylessEntry;
+        }
+        public void setKeylessEntry(String keylessEntry) {
+            this.keylessEntry = keylessEntry;
+        }
+    }
+//******************************************************************************
     final String brand;
     final String model;
     final int yearOfIssue;
     final String assemblyCountry;
     final String bodyType;   // тип кузова
     final int places;             // Количество мест
+    Key key;
 
     public String getBrand() { return brand; }
     public String getModel() { return model; }
@@ -21,6 +44,7 @@ public class Car {
     String gearbox;         // коробка передач
     String regNumber;          // Регистрационный номер
     String tiresType;       // тип авторезины - летняя или зимняя
+    //Car.new Key();
 
     public double getEngineVolume() { return engineVolume; }
     public void setEngineVolume(double engineVolume) {
@@ -46,6 +70,10 @@ public class Car {
     public void setTiresType(String tiresType) {
         if (tiresType == null || tiresType.isEmpty() || tiresType.isBlank()) { this.tiresType = "летняя";
         } else this.tiresType = tiresType;
+    }
+    public Key getKey() { return key;
+    }
+    public void setKey(Key key) { this.key = key;
     }
 
     // Constructor ****************************************************
