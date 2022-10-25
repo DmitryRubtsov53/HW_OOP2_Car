@@ -11,17 +11,17 @@ public class Main {
         Car [] car = new Car[6];
 
         car[0] = new Car(null, null, 0, null, null, 0,"ландо", 5, "АКПП",
-                "", "лето");
+                "", "лето", new Car.Key(true,false), new Car.Insurance(null,5450,null));
         car[1] = new Car("Lada", "Granta", 2015, "Россия", "желтый", 1.7, "купе", 5, "",
-                "", "");
+                "", "", new Car.Key(true,false), new Car.Insurance(null,5450,null));
         car[2] = new Car("Audi", "A8 50 L TDI quattro", 2020, "Германия", "черный", 3.0, "купе", 0, null,
-                "z050ЕС102", "");
+                "z050ЕС102", "", new Car.Key(true,false), new Car.Insurance(null,5450,null));
         car[3] = new Car("BMW", "Z8", 2021, "Германия", "черный", 3.0, "кабриалет", 0, null,
-                "А111Тф002", "зима");
+                "А111Тф002", "зима", new Car.Key(true,false), new Car.Insurance(null,5450,null));
         car[4] = new Car("Kia", "Sportage", 2018, "Южная Корея", "красный", 2.4,null, 0, null,
-                "",null);
+                "",null, new Car.Key(true,false), new Car.Insurance(null,5450,null));
         car[5] = new Car("Hyundai", "Avante", 2016, "Южная Корея", "оранжевый", 1.6, null, 2, null,
-                "Р700Ся702", "зима");
+                "Р700Ся702", "зима", new Car.Key(true,false), new Car.Insurance(null,5450,null));
 
         printCars(car);
 

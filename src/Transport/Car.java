@@ -1,36 +1,63 @@
 package Transport;
 
+import java.time.LocalDate;
+
 public class Car {
+    public static class Insurance {  //**** Вложенный класс Страховка ***************************
+        private static LocalDate timeIns;
+        private final float costIns;
+        private final String numberIns;
 
-    public static class Key {  //**** Вложенный класс ***************************
+        public LocalDate getTimeIns() { return timeIns;
+        }
+         public float getCostIns() { return costIns;
+        }
 
-        private String remoteStart;     // Дистанционный запуск
-        private String keylessEntry;    // Бесключевой доступ
+        public String getNumberIns() { return numberIns;
+        }
 
-        public Key(String remoteStart, String keylessEntry) {
+        public Insurance(LocalDate timeIns, float costIns, String numberIns) {
+            this.timeIns = timeIns != null ? timeIns : LocalDate.now().plusDays(1);
+            this.costIns = costIns != 0.0f ? costIns : 3000.0f;
+            this.numberIns = numberIns != null && numberIns.length() == 9 ? numberIns : "default";
+        }
+        public static String isRealInsurance () {
+           if (LocalDate.now().isBefore(timeIns)) {
+               return " страховка действующая.";
+           } else return " страховка просрочена.";
+        }
+    }
+
+    public static class Key {  //**** Вложенный класс Key ***************************
+
+        private static boolean remoteStart;     // Дистанционный запуск
+        private static boolean keylessEntry;    // Бесключевой доступ
+
+        public Key(boolean remoteStart, boolean keylessEntry) {
             this.remoteStart = remoteStart;
             this.keylessEntry = keylessEntry;
         }
 
-        public String getRemoteStart() { return remoteStart;
+        public boolean getRemoteStart() { return remoteStart;
         }
-        public void setRemoteStart(String remoteStart) {
+        public void setRemoteStart(boolean remoteStart) {
             this.remoteStart = remoteStart;
         }
-        public String getKeylessEntry() { return keylessEntry;
+        public boolean getKeylessEntry() { return keylessEntry;
         }
-        public void setKeylessEntry(String keylessEntry) {
+        public void setKeylessEntry(boolean keylessEntry) {
             this.keylessEntry = keylessEntry;
         }
     }
 //******************************************************************************
-    final String brand;
-    final String model;
-    final int yearOfIssue;
-    final String assemblyCountry;
-    final String bodyType;   // тип кузова
-    final int places;             // Количество мест
-    public static Key key;
+    private final String brand;
+    private final String model;
+    private final int yearOfIssue;
+    private final String assemblyCountry;
+    private final String bodyType;   // тип кузова
+    private final int places;             // Количество мест
+    private Key key;
+    private Insurance insurance;
 
     public String getBrand() { return brand; }
     public String getModel() { return model; }
@@ -75,10 +102,15 @@ public class Car {
     }
     public void setKey(Key key) { this.key = key;
     }
+    public Insurance getInsurance() { return insurance;
+    }
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
+    }
 
     // Constructor ****************************************************
     public Car (String brand, String model, int yearOfIssue, String assemblyCountry, String bodyColor, double engineVolume,
-                String bodyType, int places,String gearbox, String regNumber, String tiresType ) {
+                String bodyType, int places,String gearbox, String regNumber, String tiresType, Key key, Insurance insurance ) {
         if (brand == null || brand.isEmpty() || brand.isBlank()) {
             this.brand = "default";
             } else this.brand = brand;
@@ -110,6 +142,8 @@ public class Car {
         if (tiresType == null || tiresType.isEmpty() || tiresType.isBlank()) {
             this.tiresType = "лето";
             } else this.tiresType = tiresType;
+        this.key = key;
+        this.insurance = insurance;
         }
 
 // methods ***********************************************************
@@ -118,7 +152,9 @@ public String toString() {
     return brand + " " + model + ", " + yearOfIssue + "-го года, сборка " +
               assemblyCountry + ", " + "цвет " + bodyColor + ", V двигателя - " + engineVolume + " л., кузов - " +
               bodyType + ", количество мест " + places + ", Госномер " + regNumber + ", " + gearbox +
-              ", тип авторезины - " +  tiresType + ".";
+              ", тип авторезины - " +  tiresType +
+              ", ключ с автозапуском " + Key.remoteStart + ", с бесключевым доступом " + Key.keylessEntry +
+              "," + Insurance.isRealInsurance();
         }
 
 }
